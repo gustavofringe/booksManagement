@@ -19,7 +19,7 @@
 <body>
 <header>
     <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
-        <h1 class="navbar-brand mr-5 title">Gestion de compte bancaire</h1>
+        <h1 class="navbar-brand mr-5 title">Gestionnaire de livres</h1>
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <?php if ($_REQUEST['url']) : ?>
@@ -65,7 +65,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <p class="text-center" id="text">@Cash bank</p>
+                <p class="text-center" id="text">@Book management</p>
             </div>
         </div>
     </div>

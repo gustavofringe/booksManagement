@@ -13,7 +13,6 @@ class HomeController extends Controller
     public function index()
     {
         //title page
-        dd(sha1('dominique'));
         $title = "Accueil";
         $this->loadModel('User');
         //load model user
