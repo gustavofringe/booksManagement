@@ -15,6 +15,19 @@ class AdminsSeeder extends AbstractSeed
      */
     public function run()
     {
-
+        $filename =  'db/seeds/admins.json';
+        $file = fopen($filename, 'r');
+        $contents = fread($file, filesize($filename));
+        $cont = json_decode($contents, true);
+        // dd($cont);
+        $admins = [];
+        foreach ($cont as $k => $v) {
+            $admins[] = [
+                'adminID' => $v['adminID'],
+                'name' => $v['name'],
+                'password' => $v['password']
+            ];
+        }
+        $this->insert('admins', $admins);
     }
 }

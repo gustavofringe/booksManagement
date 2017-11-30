@@ -1,12 +1,17 @@
 [
   {
-    "userID": "1",
-    "name": "gui",
-    "password": "d6a7af134530254f6dae4886d160be8e6c6891c9"
+    "adminID": "1",
+    "name": "robert",
+    "password": "12e9293ec6b30c7fa8a0926af42807e929c1684f"
   },
   {
-    "userID": "2",
-    "name": "thom",
-    "password": "b591b301ff4610f565a21bb050267ffd893cc83c"
+    "adminID": "2",
+    "name": "odette",
+    "password": "329ef167fcd2befe9df782ccd8d6ea35b8338fd4"
+  },
+  {
+    "adminID": "3",
+    "name": "dominique",
+    "password": "f313791ae069ed592c35c483b3d4f8d2a74a74b2"
   }
 ]

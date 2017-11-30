@@ -15,6 +15,14 @@ class BorrowersSeeder extends AbstractSeed
      */
     public function run()
     {
+        $faker = Faker\Factory::create('fr_FR');
+        $data = [];
+        for ($i = 0; $i < 20; $i++) {
+            $data[] = [
+                'name'      => $faker->name,
+            ];
+        }
 
+        $this->insert('borrowers', $data);
     }
 }

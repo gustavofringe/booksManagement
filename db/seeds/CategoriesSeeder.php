@@ -15,6 +15,18 @@ class CategoriesSeeder extends AbstractSeed
      */
     public function run()
     {
-
+        $filename =  'db/seeds/categories.json';
+        $file = fopen($filename, 'r');
+        $contents = fread($file, filesize($filename));
+        $cont = json_decode($contents, true);
+        // dd($cont);
+        $categories = [];
+        foreach ($cont as $k => $v) {
+            $categories[] = [
+                'categoryID' => $v['categoryID'],
+                'name' => $v['name'],
+            ];
+        }
+        $this->insert('categories', $categories);
     }
 }

@@ -1,0 +1,22 @@
+[
+  {
+    "categoryID":"1",
+    "name":"Roman"
+  },
+  {
+    "categoryID":"2",
+    "name":"Policier"
+  },
+  {
+    "categoryID":"3",
+    "name":"Bande-dessinée"
+  },
+  {
+    "categoryID":"4",
+    "name":"Fantastique"
+  },
+  {
+    "categoryID":"5",
+    "name":"Science-fiction"
+  }
+]

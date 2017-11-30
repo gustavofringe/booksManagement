@@ -28,6 +28,23 @@ class BooksTable extends AbstractMigration
      */
     public function change()
     {
+        $this->table('books',['id'=>'bookID'])
+            ->addColumn('title','string')
+            ->addColumn('author','string')
+            ->addColumn('resume','text')
+            ->addColumn('releaseDate','date')
+            ->addColumn('available','boolean')
+            ->addColumn('categoryID','integer')
+            ->addForeignKey('categoryID','categories','categoryID',[
+                'delete'=>'NO_ACTION',
+                'update'=>'NO_ACTION'
+            ])
+            ->addColumn('borrowerID','integer')
+            ->addForeignKey('borrowerID','borrowers','borrowerID',[
+                'delete'=>'NO_ACTION',
+                'update'=>'NO_ACTION'
+            ])
+            ->create();
 
     }
 }

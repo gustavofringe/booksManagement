@@ -28,6 +28,8 @@ class CategoriesTable extends AbstractMigration
      */
     public function change()
     {
-
+        $this->table('categories',['id'=>'categoryID'])
+            ->addColumn('name','string')
+            ->create();
     }
 }
