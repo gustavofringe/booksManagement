@@ -3,7 +3,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class BooksTable extends AbstractMigration
+class HistoricalBorrowersTable extends AbstractMigration
 {
     /**
      * Change Method.
@@ -28,16 +28,14 @@ class BooksTable extends AbstractMigration
      */
     public function change()
     {
-        $this->table('books',['id'=>'bookID'])
-            ->addColumn('title','string')
-            ->addColumn('author','string')
-            ->addColumn('resume','text')
-            ->addColumn('releaseDate','date')
-            ->addColumn('available','boolean')
-            ->addColumn('categoryID','integer')
-            ->addForeignKey('categoryID','categories','categoryID',[
-                'delete'=>'NO_ACTION',
-                'update'=>'NO_ACTION'
+        $this->table('historicalBorrowers', ['id' => 'historicalBorrowerID'])
+            ->addColumn('name', 'string')
+            ->addColumn('memberID','string')
+            ->addColumn('date','date')
+            ->addColumn('bookID', 'integer')
+            ->addForeignKey('bookID', 'books', 'bookID', [
+                'update' => 'NO_ACTION',
+                'delete' => 'NO_ACTION'
             ])
             ->create();
 

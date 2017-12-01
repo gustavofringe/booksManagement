@@ -9,11 +9,9 @@
 </div>
 <div class="check">
     <?php if($book->getAvailable()== true):?>
-    <span>Non disponible</span>
+    <p class="btn btn-secondary">Non disponible</p>
     <?php else:?>
-    <span>Disponible</span>
+    <p class="btn btn-info">Disponible</p>
     <?php endif;?>
-    <?php if($book->getName()):?>
-    <span><?php echo $book->getName();?></span>
-    <?php endif;?>
+    <p><a class="btn btn-primary" href="<?php echo BASE_URL;?>/pages/detail/<?php echo $book->getBookID();?>">Détail des emprunts</a></p>
 </div>

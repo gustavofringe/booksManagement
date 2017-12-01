@@ -21,6 +21,7 @@ class BorrowersSeeder extends AbstractSeed
         for ($i = 0; $i < 20; $i++) {
             $data[] = [
                 'name'      => $faker->name,
+                'memberID'=>$faker->swiftBicNumber
             ];
         }
 

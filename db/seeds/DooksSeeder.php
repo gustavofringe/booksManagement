@@ -24,9 +24,8 @@ class DooksSeeder extends AbstractSeed
                 'author' => $faker->name,
                 'resume' => $faker->realText(1500),
                 'releaseDate' => $faker->date($format = 'Y-m-d', $max = 'now'),
-                'available' => 1,
-                'categoryID' => $faker->numberBetween($min = 1, $max = 5),
-                'borrowerID' => $faker->numberBetween($min = 1, $max = 20),
+                'available' => 0,
+                'categoryID' => $faker->numberBetween($min = 1, $max = 5)
             ];
         }
 

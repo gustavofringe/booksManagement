@@ -65,12 +65,23 @@ class PagesController extends Controller
         $this->loadModel('Post');
         //find account with id
         $book = $this->Post->findFirst('books b', [
-            'conditions' => 'b.bookID=' . $id,
-            'leftjoin'=>['borrowers s'=>'b.borrowerID=s.borrowerID']
+            'conditions' => 'b.bookID=' . $id
         ]);
         $book = new Books(get_object_vars($book));
         $title = "Livre | ".$book->getTitle();
         $this->Views->render('pages', 'view', compact('book','title'));
+    }
+
+    /**
+     * @param $id
+     */
+    public function detail($id){
+        $title = "Détail emprunt";
+        $this->loadModel('Post');
+        $detail = $this->Post->findAll('historicalBorrowers',[
+            'conditions'=>'bookID='.$id
+        ]);
+        $this->Views->render('pages','detail',compact('title','detail'));
     }
 
     /**

@@ -13,6 +13,7 @@ class Borrowers
 {
     protected $borrowerID;
     protected $name;
+    protected $memberID;
     /**
      * __construct
      * @param mixed $data
@@ -68,5 +69,21 @@ class Borrowers
     public function setBorrowerID($borrowerID)
     {
         $this->borrowerID = $borrowerID;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMemberID()
+    {
+        return $this->memberID;
+    }
+
+    /**
+     * @param mixed $memberID
+     */
+    public function setMemberID($memberID)
+    {
+        $this->memberID = $memberID;
     }
 }

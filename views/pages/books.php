@@ -11,7 +11,7 @@
                 </div>
                     <div class="card-block" id="card-bottom">
                         <a href="<?php echo BASE_URL;?>/pages/view/<?php echo $book->getBookID();?>" class="btn btn-primary">Lire la suite</a>
-                        <a href="<?php echo BASE_URL;?>/posts/edit" class="btn btn-primary">Editer</a>
+                        <a href="<?php echo BASE_URL;?>/posts/edit/<?php echo $book->getBookID();?>" class="btn btn-primary">Emprunt</a>
                         <p>
                             <?php if ($book->getAvailable() == false): ?>
                         <p class="btn btn-danger"> Non disponible</p>

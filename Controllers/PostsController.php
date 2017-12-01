@@ -4,10 +4,30 @@ namespace Http;
 
 use App\Controller;
 use function dd;
+use Entity\Books;
+use Entity\Borrowers;
 use Entity\Posts;
 
 class PostsController extends Controller
 {
+    public function edit($id){
+        $var['title'] = "Emprunt";
+        $this->loadModel('Post');
+        $var['book'] = $this->Post->findFirst('books',[
+            'conditions'=>['bookID='.$id]
+        ]);
+        $var['borrowers'] = $this->Post->findAll('borrowers',[]);
+        $var['book'] = new Books(get_object_vars($var['book']));
+        foreach ($var['borrowers'] as $k => $v) {
+            $var['borrowers'][$k] = new Borrowers(get_object_vars($v));
+        }
+        if($this->Request->post->borrower){
+            $this->Post->findFirst('borrowers',[
+                'conditions'=>
+            ])
+        }
+        $this->Views->render('posts','edit',$var);
+    }
     /**
      *create new account
      */

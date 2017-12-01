@@ -22,7 +22,7 @@
         <h1 class="navbar-brand mr-5 title">Gestionnaire de livres</h1>
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
-                <?php if ($_REQUEST['url'] != '/') : ?>
+                <?php if ($_REQUEST['url'] != '') : ?>
                 <li class="nav-item active">
                     <a class="nav-link" href="<?php echo BASE_URL; ?>/pages/books">Accueil<span class="sr-only">(current)</span></a>
                 </li>
@@ -33,7 +33,6 @@
                 </li>
             </ul>
             <?php endif;?>
-            <?php// dd($_REQUEST['url']);?>
             <?php if ($_REQUEST['url'] === 'pages/books') : ?>
             <ul class="my-2 my-lg-0 navbar-nav">
                 <li>
@@ -47,7 +46,7 @@
                     </form>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="<?php echo BASE_URL; ?>/posts/new">Nouveau livre<span
+                    <a class="nav-link" href="<?php echo BASE_URL; ?>/posts/new">Ajouter un livre<span
                                 class="sr-only">(current)</span></a>
                 </li>
             </ul>

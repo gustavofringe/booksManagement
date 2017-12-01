@@ -30,6 +30,7 @@ class BorrowersTable extends AbstractMigration
     {
         $this->table('borrowers',['id'=>'borrowerID'])
             ->addColumn('name','string')
+            ->addColumn('memberID','string')
             ->create();
     }
 }
