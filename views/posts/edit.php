@@ -20,7 +20,7 @@
         <form action="" method="post" class="mt-5">
             <span>Rendre le livre disponible: </span>
             <label class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" value="0">
+                <input type="checkbox" class="custom-control-input" name="available">
                 <span class="custom-control-indicator"></span>
                 <span class="custom-control-description">Disponible</span>
             </label>

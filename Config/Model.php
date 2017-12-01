@@ -225,15 +225,18 @@ class Model
                 $data[":$k"] = $v;
             }
         }
-        if (isset($datas->$key) && !empty($datas->$key)) {
+
+
+        if (isset($datas[$key]) && !empty($datas[$key])) {
+
             $sql = 'UPDATE ' . $table . ' SET ' . implode(',', $fields) . ' WHERE ' . $key . '=:' . $key;
-            $this->id = $datas->$key;
+            $this->id = $datas[$key];
             $action = 'update';
         } else {
             $sql = 'INSERT INTO ' . $table . ' SET ' . implode(',', $fields);
             $action = 'insert';
         }
-        //return $data;
+        //return $sql;
         //prepare request
         $pre = $this->db->prepare($sql);
         //execute request

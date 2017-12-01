@@ -3,6 +3,7 @@
 namespace Http;
 
 use App\Controller;
+use function date;
 use function dd;
 use Entity\Books;
 use Entity\Borrowers;
@@ -21,10 +22,41 @@ class PostsController extends Controller
         foreach ($var['borrowers'] as $k => $v) {
             $var['borrowers'][$k] = new Borrowers(get_object_vars($v));
         }
-        if($this->Request->post->borrower){
-            $this->Post->findFirst('borrowers',[
-                'conditions'=>
-            ])
+        if (isset($this->Request->post->borrower)) {
+            $borrower = $this->Post->findFirst('borrowers', [
+                'conditions' => ['memberID' => $this->Request->post->borrower]
+            ]);
+            /*$this->Request->post->name = $borrower->name;
+            $this->Request->post->memberID = $this->Request->post->borrower;
+            $this->Request->post->borrowerID = $borrower->borrowerID;
+            $this->Request->post->bookID = $id;
+            $this->Request->post->date = date("Y-m-d");*/
+
+            $this->Post->save('books',[
+                'bookID'=>$id,
+                'available'=>"0"
+            ]);
+            $this->Post->save('historicalBorrowers', [
+                'name' => $borrower->name,
+                'memberID' => $this->Request->post->borrower,
+                'date' => date("Y-m-d"),
+                'bookID' => $id
+            ]);
+            //flash message
+            $this->Session->setFlash('Votre demande est enregistré');
+            //redirection
+            $this->Views->redirect(BASE_URL . '/pages/books');
+            die();
+        }elseif (isset($this->Request->post->available)){
+            $this->Post->save('books',[
+                'bookID'=>$id,
+                'available'=>"1"
+            ]);
+            //flash message
+            $this->Session->setFlash('Votre demande est enregistré');
+            //redirection
+            $this->Views->redirect(BASE_URL . '/pages/books');
+            die();
         }
         $this->Views->render('posts','edit',$var);
     }
