@@ -20,7 +20,7 @@ class Route
         if (empty($this->url[0])) {
             $this->loadControllerDefault();
         } elseif (!empty($this->url[0])) {
-            $this->loadEntity();
+            //$this->loadEntity();
             $this->loadController();
             $this->methodExist();
         } else {

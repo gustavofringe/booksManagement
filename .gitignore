@@ -4,3 +4,4 @@
 /vendor/
 /Config/conf.php
 /.idea
+/phinx.yml

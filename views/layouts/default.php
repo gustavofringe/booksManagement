@@ -22,23 +22,33 @@
         <h1 class="navbar-brand mr-5 title">Gestionnaire de livres</h1>
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
-                <?php if ($_REQUEST['url']) : ?>
+                <?php if ($_REQUEST['url'] != '/') : ?>
                 <li class="nav-item active">
-                    <a class="nav-link" href="<?php echo BASE_URL; ?>/pages/accounts">Accueil<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="<?php echo BASE_URL; ?>/pages/books">Accueil<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <?php if (isset($_SESSION['user'])) : ?>
+                    <?php if (isset($_SESSION['admin'])) : ?>
                         <a class="nav-link" href="<?= BASE_URL; ?>/pages/logout">Se deconnecter</a>
                     <?php endif; ?>
                 </li>
             </ul>
+            <?php endif;?>
+            <?php// dd($_REQUEST['url']);?>
+            <?php if ($_REQUEST['url'] === 'pages/books') : ?>
             <ul class="my-2 my-lg-0 navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="<?php echo BASE_URL; ?>/posts/transfer">Virements<span
-                                class="sr-only">(current)</span></a>
+                <li>
+                    <form action="" method="post" name="category">
+                        <select class="custom-select" name="category" onchange="document.forms.category.submit();">
+                            <option selected>Sélectionner une catégorie</option>
+                            <?php foreach ($categories as $cat): ?>
+                                <option value="<?php echo $cat->getCategoryID();?>"><?php echo $cat->getName(); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </form>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="<?php echo BASE_URL; ?>/posts/create">Créer un nouveau compte</a>
+                    <a class="nav-link" href="<?php echo BASE_URL; ?>/posts/new">Nouveau livre<span
+                                class="sr-only">(current)</span></a>
                 </li>
             </ul>
             <?php endif; ?>

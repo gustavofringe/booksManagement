@@ -1,6 +1,7 @@
 <?php
 
 
+use Entity\Borrowers;
 use Phinx\Seed\AbstractSeed;
 
 class BorrowersSeeder extends AbstractSeed

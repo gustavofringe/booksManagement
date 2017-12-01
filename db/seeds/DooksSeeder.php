@@ -1,9 +1,10 @@
 <?php
 
 
+use Entity\Books;
 use Phinx\Seed\AbstractSeed;
 
-class BooksSeeder extends AbstractSeed
+class DooksSeeder extends AbstractSeed
 {
     /**
      * Run Method.
@@ -19,13 +20,13 @@ class BooksSeeder extends AbstractSeed
         $data = [];
         for ($i = 0; $i < 100; $i++) {
             $data[] = [
-                'title'      => $faker->userName,
-                'password'      => sha1($faker->password),
-                'password_salt' => sha1('foo'),
-                'email'         => $faker->email,
-                'first_name'    => $faker->firstName,
-                'last_name'     => $faker->lastName,
-                'created'       => date('Y-m-d H:i:s'),
+                'title' => $faker->realText(15, 1),
+                'author' => $faker->name,
+                'resume' => $faker->realText(1500),
+                'releaseDate' => $faker->date($format = 'Y-m-d', $max = 'now'),
+                'available' => 1,
+                'categoryID' => $faker->numberBetween($min = 1, $max = 5),
+                'borrowerID' => $faker->numberBetween($min = 1, $max = 20),
             ];
         }
 
