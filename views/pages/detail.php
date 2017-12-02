@@ -6,10 +6,10 @@
             <table id="table" class="table table-bordered table-hover mb-5">
                 <thead>
                 <tr>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Numéro de membre</th>
-                    <th scope="col">Date d'emprunt</th>
-                    <th scope="col">Titre du livre</th>
+                    <th>Nom</th>
+                    <th>Numéro de membre</th>
+                    <th>Date d'emprunt</th>
+                    <th>Titre du livre</th>
                 </tr>
                 </thead>
                 <tbody>
