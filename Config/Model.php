@@ -62,10 +62,11 @@ class Model
                     if (empty($data->$k)) {
                         Form::$errors[$k] = $v['message'];
                     }
-                } elseif ($v['rule'] === 'sanitize') {
-                    $data->$k = filter_var($data->$k, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-                    return $data->$k;
-                } elseif ($v['rule'] === 'url') {
+                } elseif ($v['rule'] === 'preg') {
+                    if (!preg_match('/^' . $v['cond'] . '$/', $data->$k)) {
+                        Form::$errors[$k] = $v['message'];
+                    }
+                }elseif ($v['rule'] === 'url') {
                     if (isset($data->$k) && !filter_var($data->$k, FILTER_VALIDATE_URL)) {
                         Form::$errors[$k] = $v['message'];
                     }
@@ -78,10 +79,8 @@ class Model
                     if (!in_array($ext, $v['cond'])) {
                         Form::$errors[$k] = $v['message'];
                     }
-                } elseif ($v['rule'] === 'preg') {
-                    if (!preg_match('/^' . $v['cond'] . '$/', $data->$k)) {
-                        Form::$errors[$k] = $v['message'];
-                    }
+                }elseif ($v['rule'] === 'sanitize') {
+                    $data->$k = filter_var($data->$k, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
                 }
             }
         }
@@ -113,7 +112,7 @@ class Model
             }
             //count field
         } else if (isset($req['count'])) {
-            $sql .= $req['field'] . ', COUNT(' . $req['count'] . ') as ' . $req['as'];
+            $sql .= ' COUNT(' . $req['count'] . ') as ' . $req['as'];
         } else if (isset($req['fields'])) {
             if (is_array($req['fields'])) {
                 $sql .= implode(', ', $req['fields']);

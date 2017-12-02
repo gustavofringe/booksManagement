@@ -6,6 +6,7 @@ use App\Controller;
 use function dd;
 use Entity\Books;
 use Entity\Categories;
+use Entity\HistoricalBorrowers;
 use Entity\Pages;
 use function print_r;
 
@@ -16,41 +17,45 @@ class PagesController extends Controller
      * accounts
      * @return mixed
      */
-    public function books()
+    public function books($pages = 1)
     {
-        //dd($this->Request->post);
         $this->Session->isLogged('admin');
         //define title
         $var['title'] = "Les livres";
         //load model post for recover entry
         $this->loadModel('Post');
-        //search all accounts
-        $var['books'] = $this->Post->findAll('books b', [
-            'leftjoin'=>['categories c'=>'c.categoryID=b.categoryID']
+        //count book for pagination
+        $countBook = $this->Post->findAll('books', [
+            'count' => 'bookID',
+            'as' => 'nbBook'
         ]);
+        $nbBook = $countBook[0]->nbBook;
+        //define card per page
+        $perPage = 9;
+        $var['nbPage'] = ceil($nbBook / $perPage);
+        $defPage = $pages;
+        //search all books
+        $var['books'] = $this->Post->findAll('books b', [
+            'leftjoin' => ['categories c' => 'c.categoryID=b.categoryID'],
+            'limit' => (($defPage - 1) * $perPage) . ',' . $perPage
+        ]);
+        //search all categories
         $var['categories'] = $this->Post->findAll('categories',[]);
+        //display books by categories
         if(isset($this->Request->post->category)){
             $var['books'] = $this->Post->findAll('books b',[
                 'leftjoin'=>['categories c'=>'c.categoryID=b.categoryID'],
                 'conditions'=>['b.categoryID'=>$this->Request->post->category]
             ]);
-            //dd($var['books']);
-
         }
-
+        //insert entities
         foreach ($var['books'] as $k => $v) {
             $var['books'][$k] = new Books(get_object_vars($v));
         }
         foreach ($var['categories'] as $k => $v) {
             $var['categories'][$k] = new Categories(get_object_vars($v));
         }
-        //define session getAccount for display no error
-        /*$var['count'] = count($var['accounts']);
-        if ($var['count'] === 0) {
-            $this->Session->write('getAccount', false);
-        }*/
-
-
+        //render view
         $this->Views->render('pages', 'books', $var);
     }
 
@@ -61,27 +66,38 @@ class PagesController extends Controller
      */
     public function view($id)
     {
-
+        //load model for recover entry
         $this->loadModel('Post');
         //find account with id
         $book = $this->Post->findFirst('books b', [
             'conditions' => 'b.bookID=' . $id
         ]);
         $book = new Books(get_object_vars($book));
+        //define title
         $title = "Livre | ".$book->getTitle();
+        //return view
         $this->Views->render('pages', 'view', compact('book','title'));
     }
 
     /**
+     * detail book
      * @param $id
+     *
      */
     public function detail($id){
+        //title page
         $title = "Détail emprunt";
+        //load model for find all results
         $this->loadModel('Post');
-        $detail = $this->Post->findAll('historicalBorrowers',[
-            'conditions'=>'bookID='.$id
+        $details = $this->Post->findAll('historicalBorrowers h', [
+            'leftjoin' => ['books b' => 'b.bookID=h.bookID'],
+            'conditions' => 'b.bookID=' . $id
         ]);
-        $this->Views->render('pages','detail',compact('title','detail'));
+        foreach ($details as $k => $v) {
+            $details[$k] = new HistoricalBorrowers(get_object_vars($v));
+        }
+        //return view with params
+        $this->Views->render('pages', 'detail', compact('title', 'details'));
     }
 
     /**
@@ -90,6 +106,6 @@ class PagesController extends Controller
      */
     public function logout()
     {
-        $this->Session->logout('user');
+        $this->Session->logout('admin');
     }
 }

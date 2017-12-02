@@ -8,6 +8,7 @@ class Request
     public $post = false;
     public $file = false;
     public $session = false;
+    public $get = false;
 
     /**
      * Request constructor.
@@ -33,6 +34,13 @@ class Request
             $this->session = new stdClass();
             foreach($_SESSION as $k=>$v){
                 $this->session->$k = $v;
+            }
+        }
+        //recover all session
+        if(!empty($_GET)){
+            $this->get = new stdClass();
+            foreach($_GET as $k=>$v){
+                $this->get->$k = $v;
             }
         }
     }

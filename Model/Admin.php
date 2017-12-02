@@ -1,13 +1,13 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: gustavo
+ * Admin: gustavo
  * Date: 10/11/17
  * Time: 22:16
  */
 use App\Model;
 
-class User extends Model
+class Admin extends Model
 {
     protected $fillable = [
         'name'=>[

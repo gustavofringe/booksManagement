@@ -1,4 +1,6 @@
-<h2>Emprunt</h2>
+<h2>Emprunts</h2>
+
+
 <div class="card mb-5">
     <div class="card-header">
         Carte d'emprunt

@@ -9,9 +9,9 @@
                     <p>categorie: <?php echo $book->getName(); ?></p>
                     <p class="card-text"><?php echo substr($book->getResume(), 0, 200); ?>...</p>
                 </div>
-                    <div class="card-block" id="card-bottom">
+                    <div class="card-block mb-5" id="card-bottom">
                         <a href="<?php echo BASE_URL;?>/pages/view/<?php echo $book->getBookID();?>" class="btn btn-primary">Lire la suite</a>
-                        <a href="<?php echo BASE_URL;?>/posts/edit/<?php echo $book->getBookID();?>" class="btn btn-primary">Emprunt</a>
+                        <a href="<?php echo BASE_URL;?>/posts/edit/<?php echo $book->getBookID();?>" class="btn btn-primary">Emprunts</a>
                         <p>
                             <?php if ($book->getAvailable() == false): ?>
                         <p class="btn btn-danger"> Non disponible</p>
@@ -24,4 +24,19 @@
             </div>
         </div>
     <?php endforeach; ?>
+</div>
+<?php if(!isset($_POST['category'])):?>
+<nav class="mb-5" aria-label="...">
+    <ul class="pagination pagination-sm">
+            <?php for ($i=1;$i<=$nbPage;$i++):?>
+        <li class="page-item">
+        <a class="page-link" href="<?php echo BASE_URL;?>/pages/books/<?php echo $i;?>"><?php echo $i;?></a>
+        </li>
+            <?php endfor;?>
+    </ul>
+</nav>
+<?php endif;?>
+
+<div class="pagination mb-5">
+
 </div>

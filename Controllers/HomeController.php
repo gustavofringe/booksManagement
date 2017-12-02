@@ -13,14 +13,14 @@ class HomeController extends Controller
     public function index()
     {
         //title page
-        $title = "Accueil";
-        $this->loadModel('User');
+        $title = "Se connecter";
+        $this->loadModel('Admin');
         //load model user
         if ($this->Request->post) {
             //hash password
             $password = $this->Service->hashPass($this->Request->post->password);
             //search users
-            $users = $this->User->findAll('admins', [
+            $users = $this->Admin->findAll('admins', [
                 'name' => $this->Request->post->name,
                 'password' => $password
             ]);
@@ -28,7 +28,6 @@ class HomeController extends Controller
             foreach ($users as $user) {
                 if ($password == $user->password) {
                     $this->Session->write('admin', $user);
-                    $this->Session->write('getAccount', true);
                     $this->Session->setFlash("Vous êtes maintenant connecté");
                     $this->Views->redirect('pages/books');
                     die();

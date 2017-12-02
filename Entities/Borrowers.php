@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: gustavo
+ * Admin: gustavo
  * Date: 01/12/17
  * Time: 08:55
  */
@@ -53,6 +53,7 @@ class Borrowers
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -69,6 +70,7 @@ class Borrowers
     public function setBorrowerID($borrowerID)
     {
         $this->borrowerID = $borrowerID;
+        return $this;
     }
 
     /**
@@ -85,5 +87,6 @@ class Borrowers
     public function setMemberID($memberID)
     {
         $this->memberID = $memberID;
+        return $this;
     }
 }

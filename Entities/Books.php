@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: gustavo
+ * Admin: gustavo
  * Date: 01/12/17
  * Time: 09:31
  */
@@ -18,7 +18,6 @@ class Books
     protected $releaseDate;
     protected $available;
     protected $categoryID;
-    protected $borrowerID;
     protected $name;
     /**
      * __construct
@@ -49,15 +48,17 @@ class Books
      */
     public function getBookID()
     {
-        return $this->booksID;
+        return $this->bookID;
     }
 
     /**
      * @param mixed $booksID
      */
-    public function setBookID($booksID)
+    public function setBookID($bookID)
     {
-        $this->booksID = $booksID;
+        $bookID = (int) $bookID;
+        $this->bookID =  $bookID;
+
     }
 
     /**
@@ -114,6 +115,7 @@ class Books
     public function getReleaseDate()
     {
         return $this->releaseDate;
+
     }
 
     /**
@@ -153,23 +155,7 @@ class Books
      */
     public function setCategoryID($categoryID)
     {
-        $this->categoryID = $categoryID;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBorrowerID()
-    {
-        return $this->borrowerID;
-    }
-
-    /**
-     * @param mixed $borrowerID
-     */
-    public function setBorrowerID($borrowerID)
-    {
-        $this->borrowerID = $borrowerID;
+        $this->categoryID = (int) $categoryID;
     }
 
     /**
@@ -187,4 +173,5 @@ class Books
     {
         $this->name = $name;
     }
+
 }

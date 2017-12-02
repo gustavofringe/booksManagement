@@ -10,7 +10,15 @@ body {
 .red {
     color: red !important;
 }
-
+#card{
+    position: relative;
+}
+#card-bottom{
+    position: absolute;
+    bottom: -80px;
+    left: 0;
+    right: 0;
+}
 .footer {
     position: absolute;
     bottom: 0;
