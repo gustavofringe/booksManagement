@@ -5,6 +5,7 @@ namespace Http;
 use App\Controller;
 use function dd;
 use Entity\Books;
+use Entity\Borrowers;
 use Entity\Categories;
 use Entity\HistoricalBorrowers;
 use Entity\Pages;
@@ -66,6 +67,7 @@ class PagesController extends Controller
      */
     public function view($id)
     {
+        $this->Session->isLogged('admin');
         //load model for recover entry
         $this->loadModel('Post');
         //find account with id
@@ -85,6 +87,7 @@ class PagesController extends Controller
      *
      */
     public function detail($id){
+        $this->Session->isLogged('admin');
         //title page
         $title = "Détail emprunt";
         //load model for find all results
@@ -98,6 +101,19 @@ class PagesController extends Controller
         }
         //return view with params
         $this->Views->render('pages', 'detail', compact('title', 'details'));
+    }
+    public function users(){
+        //lock session
+        $this->Session->isLogged('admin');
+        //define title
+        $title = "Les utilisateurs";
+        //load all borrowers
+        $this->loadModel('Post');
+        $users = $this->Post->findAll('borrowers',[]);
+        foreach ($users as $k => $v) {
+            $users[$k] = new Borrowers(get_object_vars($v));
+        }
+        $this->Views->render('pages','users',compact('title','users'));
     }
 
     /**

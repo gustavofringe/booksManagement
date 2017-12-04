@@ -13,6 +13,7 @@ class Borrowers
 {
     protected $borrowerID;
     protected $name;
+    protected $email;
     protected $memberID;
     /**
      * __construct
@@ -88,5 +89,21 @@ class Borrowers
     {
         $this->memberID = $memberID;
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
     }
 }

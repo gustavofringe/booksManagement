@@ -38,7 +38,10 @@
             <?php if ($_REQUEST['url'] === 'pages/books') : ?>
 
             <ul class="my-2 my-lg-0 navbar-nav">
-
+                <li class="nav-item active">
+                    <a class="nav-link " href="<?php echo BASE_URL; ?>/pages/users">Voir les utilisateurs<span
+                                class="sr-only">(current)</span></a>
+                </li>
                 <li class="nav-item active">
                     <a class="nav-link " href="<?php echo BASE_URL; ?>/posts/create">Ajouter un livre<span
                                 class="sr-only">(current)</span></a>
