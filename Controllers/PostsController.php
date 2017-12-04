@@ -16,17 +16,22 @@ class PostsController extends Controller
      * @param $id
      */
     public function edit($id){
+        // lock session
         $this->Session->isLogged('admin');
-        $var['title'] = "Emprunt";
+        //title page
+        $var['title'] = "Emprunts";
         $this->loadModel('Post');
+        //find book with id
         $var['book'] = $this->Post->findFirst('books',[
             'conditions'=>['bookID='.$id]
         ]);
+        //find all borrowers
         $var['borrowers'] = $this->Post->findAll('borrowers',[]);
         $var['book'] = new Books(get_object_vars($var['book']));
         foreach ($var['borrowers'] as $k => $v) {
             $var['borrowers'][$k] = new Borrowers(get_object_vars($v));
         }
+        //if change borrower
         if (isset($this->Request->post->borrower)) {
             $borrower = $this->Post->findFirst('borrowers', [
                 'conditions' => ['memberID' => $this->Request->post->borrower]
@@ -42,17 +47,18 @@ class PostsController extends Controller
                 'bookID' => $id
             ]);
             //flash message
-            $this->Session->setFlash('Votre demande est enregistré');
+            $this->Session->setFlash('Votre demande est enregistrée');
             //redirection
             $this->Views->redirect(BASE_URL . '/pages/books');
             die();
+            //if change status
         }elseif (isset($this->Request->post->available)){
             $this->Post->save('books',[
                 'bookID'=>$id,
                 'available'=>1
             ]);
             //flash message
-            $this->Session->setFlash('Votre demande est enregistré');
+            $this->Session->setFlash('Votre demande est enregistrée');
             //redirection
             $this->Views->redirect(BASE_URL . '/pages/books');
             die();
@@ -60,7 +66,7 @@ class PostsController extends Controller
         $this->Views->render('posts','edit',$var);
     }
     /**
-     *create new account
+     *create new book
      */
     public function create()
     {

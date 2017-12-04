@@ -108,8 +108,8 @@ class PagesController extends Controller
         //define title
         $title = "Les utilisateurs";
         //load all borrowers
-        $this->loadModel('Post');
-        $users = $this->Post->findAll('borrowers',[]);
+        $this->loadModel('User');
+        $users = $this->User->findAll('borrowers',[]);
         foreach ($users as $k => $v) {
             $users[$k] = new Borrowers(get_object_vars($v));
         }
