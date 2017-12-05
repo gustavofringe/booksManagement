@@ -13,6 +13,7 @@ use function method_exists;
 class PostsController extends Controller
 {
     /**
+     * Edit book
      * @param $id
      */
     public function edit($id){
@@ -36,10 +37,12 @@ class PostsController extends Controller
             $borrower = $this->Post->findFirst('borrowers', [
                 'conditions' => ['memberID' => $this->Request->post->borrower]
             ]);
+            //save available book
             $this->Post->save('books',[
                 'bookID'=>$id,
                 'available'=>0
             ]);
+            //save historical borrower
             $this->Post->save('historicalBorrowers', [
                 'name' => $borrower->name,
                 'memberID' => $this->Request->post->borrower,
@@ -70,7 +73,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-
+        //lock session
         $this->Session->isLogged('admin');
         //title page
         $title = "Nouveau livre";
@@ -81,7 +84,9 @@ class PostsController extends Controller
         if ($this->Request->post) {
             //validate input
             if ($this->Post->validates($this->Request->post)) {
+                // define available
                 $this->Request->post->available = 1;
+                //save request
                 $this->Post->save('books',get_object_vars($this->Request->post));
                 //flash message
                 $this->Session->setFlash('Votre livre est enregistré');

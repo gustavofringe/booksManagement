@@ -1,4 +1,5 @@
 <h2 class="mt-3 mb-3">Detail du livre</h2>
+<!--detail books-->
 <div class="card">
     <img class="card-img-top" src="<?php echo BASE_URL;?>/public/img/book.jpg" alt="Card image cap">
     <div class="card-block">

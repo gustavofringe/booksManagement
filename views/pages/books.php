@@ -1,4 +1,5 @@
 <h2 class="mt-3 mb-3">Les livres</h2>
+<!--cards books-->
 <div class="row">
     <?php foreach ($books as $book): ?>
         <div class="col-sm-6 col-md-6 col-lg-4 mb-4 card-content" id="card">
@@ -26,6 +27,7 @@
     <?php endforeach; ?>
 </div>
 <?php if(!isset($_POST['category'])):?>
+    <!--pagination-->
 <nav class="mb-5" aria-label="...">
     <ul class="pagination pagination-sm">
             <?php for ($i=1;$i<=$nbPage;$i++):?>

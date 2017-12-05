@@ -1,4 +1,5 @@
 <h2 class="mb-5 mt-5">Détail des emprunts</h2>
+<!--detail borrowers-->
 <div class="row">
     <div class="col-md-12">
         <div class="table-responsive">
@@ -35,4 +36,5 @@
             </table>
         </div>
     </div>
+    <!--go back-->
 <a class="btn btn-secondary" href="<?php echo $_SERVER["HTTP_REFERER"];?>">Retour</a>

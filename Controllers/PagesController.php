@@ -15,7 +15,7 @@ class PagesController extends Controller
 {
 
     /**
-     * accounts
+     * All books
      * @return mixed
      */
     public function books($pages = 1)
@@ -61,7 +61,7 @@ class PagesController extends Controller
     }
 
     /**
-     * modal
+     * view one book by id
      * @param mixed $id
      * @return mixed
      */
