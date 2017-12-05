@@ -1,4 +1,4 @@
-<h2>Emprunts</h2>
+<h2 class="mb-5 mt-5">Emprunts</h2>
 
 <!--card-->
 <div class="card mb-5">

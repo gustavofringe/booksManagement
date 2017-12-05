@@ -1,6 +1,6 @@
 <h2 class="mt-3 mb-3">Les livres</h2>
 <!--cards books-->
-<div class="row">
+<div class="row mb-5">
     <?php foreach ($books as $book): ?>
         <div class="col-sm-6 col-md-6 col-lg-4 mb-4 card-content" id="card">
             <div class="card" style="width: 20rem;height:35rem">

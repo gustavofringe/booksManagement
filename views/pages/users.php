@@ -1,4 +1,4 @@
-<h2 class="mb-2 mt-2">Les emprunteurs</h2>
+<h2 class="mb-5 mt-5">Les emprunteurs</h2>
 <div class="row mb-5">
     <div class="col-md-12">
         <div class="table-responsive">
